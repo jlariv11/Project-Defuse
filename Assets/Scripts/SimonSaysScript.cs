@@ -7,23 +7,44 @@ public class SimonSaysScript : MonoBehaviour
 {
     [SerializeField] 
     private Image[] order;
+    [SerializeField]
+    private Image[] secretOrder;
     [SerializeField] 
     private int patternLength;
     [SerializeField]
     private Image[] colors;
     [SerializeField]
-    private Image[] correctMarkers;
+    private GameObject scoreboard;
+    [SerializeField]
+    private int secretOrderLength = 8;
+    private Image[] correctImages;
+    private Image[] incorrectImages;
     private int patternIndex;
-    private int gameIndex;
+    private int correct;
+    private int incorrect;
     // Start is called before the first frame update
     void Start()
     {
+        Transform correctList = scoreboard.transform.GetChild(0).GetChild(0);
+        correctImages = new Image[correctList.childCount];
+        for(int i = 0; i < correctImages.Length; i++)
+        {
+            correctImages[i] = correctList.GetChild(i).GetComponent<Image>();
+        }
+        Transform incorrectList = scoreboard.transform.GetChild(1).GetChild(0);
+        incorrectImages = new Image[incorrectList.childCount];
+        for (int i = 0; i < incorrectImages.Length; i++)
+        {
+            incorrectImages[i] = incorrectList.GetChild(i).GetComponent<Image>();
+        }
         enableButtons(false);
-        order = new Image[patternLength];
         createPattern();
         StartCoroutine(showPattern());
         patternIndex = 0;
-        gameIndex = 0;
+        correct = 0;
+        incorrect = 0;
+        secretOrder = new Image[secretOrderLength];
+        createSecretOrder();
     }
 
     void enableButtons(bool canClick)
@@ -36,18 +57,27 @@ public class SimonSaysScript : MonoBehaviour
 
     void createPattern()
     {
+        order = new Image[patternLength];
         for (int i = 0; i < patternLength; i++)
         {
             int index = Random.Range(0, colors.Length);
             order[i] = colors[index];
         }
-        patternLength++;
+    }
+    void createSecretOrder()
+    {
+        for (int i = 0; i < secretOrderLength; i++)
+        {
+            int index = Random.Range(0, colors.Length);
+            secretOrder[i] = colors[index];
+        }
     }
 
     IEnumerator showPattern()
     {
-        if(gameIndex >= 3)
+        if(correct >= correctImages.Length || incorrect >= incorrectImages.Length)
         {
+            enableButtons(false);
             yield break;
         }
         for (int i = 0; i < patternLength; i++)
@@ -65,16 +95,20 @@ public class SimonSaysScript : MonoBehaviour
 
     public void inputColor(Image color)
     {
-        print(color.color);
-        if(color.color == order[patternIndex].color)
+        if (color.color == secretOrder[patternIndex].color)
         {
             patternIndex++;
-            if(patternIndex == patternLength)
+            if (patternIndex == secretOrderLength)
+            {
+                secretWin();
+            }
+        }
+        else if (color.color == order[patternIndex].color && patternIndex <= order.Length)
+        {
+            patternIndex++;
+            if (patternIndex == patternLength)
             {
                 showResult(true);
-                patternIndex = 0;
-                createPattern();
-                StartCoroutine(showPattern());
             }
         }
         else
@@ -83,20 +117,44 @@ public class SimonSaysScript : MonoBehaviour
         }
     }
 
-    private void showResult(bool correct)
+    private void restart(bool correctAns)
     {
-        if (correct)
+        if (correctAns)
         {
-            correctMarkers[gameIndex].color = Color.green;
+            correct++;
+            patternLength++;
         }
         else
         {
-            correctMarkers[gameIndex].color = Color.red;
-            enableButtons(false);
-            createPattern();
-            StartCoroutine(showPattern());
+            incorrect++;
         }
-        gameIndex++;
+        enableButtons(false);
+        patternIndex = 0;
+        createPattern();
+        StartCoroutine(showPattern());
+    }
+
+    private void showResult(bool correctAns)
+    {
+        if (correctAns)
+        {
+            correctImages[correct].color = Color.green;
+        }
+        else
+        {
+            incorrectImages[incorrect].color = Color.red;
+        }
+        restart(correctAns);
+    }
+
+    private void secretWin()
+    {
+        foreach(Image i in correctImages)
+        {
+            i.color = Color.green;
+        }
+        correct = correctImages.Length;
+        enableButtons(false);
     }
 
 }
