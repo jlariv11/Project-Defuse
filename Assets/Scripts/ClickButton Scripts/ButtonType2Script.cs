@@ -4,14 +4,36 @@ using UnityEngine;
 
 public class ButtonType2Script : MonoBehaviour
 {
-    //randomize this value (between 1 - 10)
-    public int clicksToBreak = 8;
+    public int clicksToBreak;
+    public int goodResult;
+    public int neutralResult;
 
-    //randomize clicks to win good (between 1 - clicksToBreak)
-    //randomize clicks to win neutral (between 1 - win good)
+    void Start()
+    {
+        clicksToBreak = Random.Range(3, 16);
+        neutralResult = Random.Range(2, clicksToBreak);
+        goodResult = Random.Range(1, neutralResult);
+    }
 
     void OnMouseDown()
     {
-        clicksToBreak -= 1; 
+        clicksToBreak -= 1;
+
+        if (clicksToBreak == 0)
+        {
+            Debug.Log("Button Broke!");
+        }
+        else if (clicksToBreak == neutralResult)
+        {
+            Debug.Log("Neutral Result Reached");
+        }
+        else if (clicksToBreak == goodResult)
+        {
+            Debug.Log("Good Result Reached");
+        }
+        else
+        {
+            Debug.Log("Random Press");
+        }
     }
 }
