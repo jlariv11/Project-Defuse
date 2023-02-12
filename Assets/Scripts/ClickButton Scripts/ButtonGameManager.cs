@@ -1,34 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonGameManager : MonoBehaviour
 {
-    public bool taskSuccess;
-    public int minigameResult;
+    public bool taskFailed = false;
 
- 
-    public int determineResult(int minigameScore)
+    public int taskCount = 0;
+    //public int minigameResult;
+    public Transform buttons;
+    public ButtonType1Script[] buttonScripts;
+
+    void Start()
     {
-        if (minigameScore == 999)
+        buttonScripts = new ButtonType1Script[buttons.childCount];
+        for (int i = 0; i < buttons.childCount; i++)
         {
-            return minigameResult = 0;
-
-        }
-        else if (minigameScore == 6)
-        {
-            return minigameResult = 1;
-
-        }
-        else if (minigameScore > 8)
-        {
-            return minigameResult = 2;
-        }
-        else
-        {
-            return minigameResult = -1;
+            buttonScripts[i] = buttons.GetChild(i).GetComponent<ButtonType1Script>();
         }
     }
+ 
+    void Update()
+    {
+        for (int i = 0; i < buttons.childCount; i++)
+        {
+            //int buttonResult = buttonScripts[i].getScore();
+            if(buttonScripts[i].getScore() == 999)
+            {
+                taskFailed = true;
+            } 
+        }
+    }
+
+    public int calculateTaskCount()
+    {
+        for (int i = 0; i < buttons.childCount; i++)
+        {
+            int buttonResult = buttonScripts[i].getScore();
+            if (buttonResult == 1 || buttonResult == 2)
+            {
+                taskCount += buttonResult;
+            }
+        }
+        return taskCount;
+    }
+
+    public void validate()
+    {
+        calculateTaskCount();
+    }
+
+
 
    
 }

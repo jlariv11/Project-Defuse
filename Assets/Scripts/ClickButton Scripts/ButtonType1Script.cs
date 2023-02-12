@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.Random;
 
 public class ButtonType1Script : MonoBehaviour
 {
@@ -12,9 +11,8 @@ public class ButtonType1Script : MonoBehaviour
 
     public ButtonGameManager buttonManager;
 
-    public int minigameScore = 0;
-    public bool gameFailed = false;
-    public int minigameResult;
+    public int buttonScore = 0;
+    
 
     void Start()
     {
@@ -30,49 +28,31 @@ public class ButtonType1Script : MonoBehaviour
         determineButtonOutcome(clicksToBreak);
         
     }
-
-    public int determineButtonOutcome(int clicksToBreak)
+    
+    int determineButtonOutcome(int clicksToBreak)
     {
         if (clicksToBreak == 0)
         {
             Debug.Log("Button Broke!");
-            gameFailed = true;
-            minigameScore = 999;
+            buttonScore = 999;
         }
         else if (clicksToBreak == neutralResult)
         {
             Debug.Log("Neutral Result Reached");
-            minigameScore += 1;
+            buttonScore = 1;
         }
         else if (clicksToBreak == goodResult)
         {
             Debug.Log("Good Result Reached");
-            minigameScore += 2;
+            buttonScore = 2;
         }
 
-        return minigameScore; 
+        return buttonScore; 
     }
 
-    public int determineResult(int minigameScore)
+    public int getScore()
     {
-        if (minigameScore == 999)
-        {
-            return minigameResult = 0;
-
-        }
-        else if (minigameScore == 2)
-        {
-            return minigameResult = 1;
-
-        }
-        else if (minigameScore == 3)
-        {
-            return minigameResult = 2;
-        }
-        else
-        {
-            return minigameResult = -1;
-        }
+        return buttonScore;
     }
 
 }
