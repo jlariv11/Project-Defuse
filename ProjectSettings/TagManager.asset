@@ -9,6 +9,7 @@ TagManager:
   - NeutralCollect
   - Enemy
   - MazeExit
+  - SceneManager
   layers:
   - Default
   - TransparentFX
