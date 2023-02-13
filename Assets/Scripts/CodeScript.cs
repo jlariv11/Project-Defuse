@@ -25,17 +25,12 @@ public class CodeScript : MonoBehaviour
         inputCode = new int[nums];
         inputIndex = 0;
         screenText.text = inputToString();
-        generateCode();
-    }
-
-    private void generateCode()
-    {
-        for(int i = 0; i < code.Length; i++)
+        for (int i = 0; i < code.Length; i++)
         {
-            code[i] = Random.Range(1, 10);
             inputCode[i] = 0;
         }
-
+        GameManager.createCode(code.Length);
+        code = GameManager.secretCode;
     }
 
     public void inputNum(int num)

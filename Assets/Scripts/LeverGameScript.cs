@@ -23,10 +23,9 @@ public class LeverGameScript : MonoBehaviour
         {
             indicatorImages[i] = indicators.GetChild(i).GetComponent<Image>();
             indicatorImages[i].color = Random.Range(0, 2) == 0 ? Color.blue : Color.black;
-            secretIndicators[i] = Random.Range(0, 2) == 0 ? Color.blue : Color.black;
-
-
         }
+        GameManager.createSecretLevers(indicators.childCount);
+        secretIndicators = GameManager.secretLeverPattern;
         leverScripts = new LeverScript[levers.childCount];
         for (int i = 0; i < indicators.childCount; i++)
         {
