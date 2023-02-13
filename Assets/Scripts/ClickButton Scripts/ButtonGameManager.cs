@@ -7,8 +7,10 @@ public class ButtonGameManager : MonoBehaviour
 {
     public bool taskFailed = false;
 
+    public int taskResult = 0;
+
     public int taskCount = 0;
-    //public int minigameResult;
+
     public Transform buttons;
     public ButtonType1Script[] buttonScripts;
 
@@ -25,7 +27,6 @@ public class ButtonGameManager : MonoBehaviour
     {
         for (int i = 0; i < buttons.childCount; i++)
         {
-            //int buttonResult = buttonScripts[i].getScore();
             if(buttonScripts[i].getScore() == 999)
             {
                 taskFailed = true;
@@ -48,10 +49,20 @@ public class ButtonGameManager : MonoBehaviour
 
     public void validate()
     {
-        calculateTaskCount();
+        int minigameCount = calculateTaskCount();
+
+        if (6 <= minigameCount && minigameCount <= 8)
+        {
+            Debug.Log("Task Complete, Neutral Result");
+            taskResult = 1;
+        } else if (minigameCount > 8)
+        {
+            Debug.Log("Task Complete, Good Result");
+            taskResult = 2;
+        } else
+        {
+            Debug.Log("Task Failed");
+        }
     }
-
-
-
    
 }
