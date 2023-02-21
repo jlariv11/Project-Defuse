@@ -9,6 +9,8 @@ public class TimerScript : MonoBehaviour
     private float maxTime = 120;
     private Text timeText;
     private float timer;
+    [SerializeField]
+    private Image flash;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class TimerScript : MonoBehaviour
         if (timer <= 0)
         {
             timeText.text = "0:00";
+            flash.gameObject.SetActive(true);
             return;
         }
         timer -= Time.deltaTime;

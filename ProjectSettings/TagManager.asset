@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - MazeExit
   - SceneManager
+  - NetworkManager
+  - Canvas
   layers:
   - Default
   - TransparentFX
