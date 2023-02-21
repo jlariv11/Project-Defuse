@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Netcode;
 
 public static class GameManager
 {
@@ -48,6 +49,5 @@ public static class GameManager
         }
         secretCode = code;
     }
-
 
 }

@@ -24,7 +24,7 @@ public class PDSceneManager : MonoBehaviour
 
     public void exitGame()
     {
-        Application.Quit(0);
+        Application.Quit();
     }
 
 }

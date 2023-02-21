@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levers.unity
     guid: 82780b4c36dfc4e00bb93b966817bf7c
   - enabled: 1
+    path: Assets/Scenes/Matchmaker.unity
+    guid: 78c6c196d5a6f491196476dc1b2846a6
+  - enabled: 1
     path: Assets/Scenes/Maze.unity
     guid: eb8521e7181c6e6479cfe7e6ea4ac830
   m_configObjects: {}
