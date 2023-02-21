@@ -13,6 +13,7 @@ public class LeverGameScript : MonoBehaviour
     [SerializeField]
     private Color[] secretIndicators;
     private LeverScript[] leverScripts;
+    private TimerScript timer;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,8 @@ public class LeverGameScript : MonoBehaviour
         {
             leverScripts[i] = levers.GetChild(i).GetComponent<LeverScript>();
         }
+        timer = GameObject.Find("Timer").GetComponent<TimerScript>();
+        timer.timeUpEvent.AddListener(deactivateLevers);
     }
 
     private void deactivateLevers()
@@ -71,6 +74,10 @@ public class LeverGameScript : MonoBehaviour
         for (int i = 0; i < indicatorImages.Length; i++)
         {
             leverScripts[i].getImage().color = win ? Color.green : Color.red;
+        }
+        if (win)
+        {
+            timer.stop();
         }
     }
 

@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Code.unity
     guid: 948cff07468744d0582cf10b7c93331f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ServerSetupScene.unity
     guid: acb41823b79534bc29553b27dd29cce0
   - enabled: 1
@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levers.unity
     guid: 82780b4c36dfc4e00bb93b966817bf7c
   - enabled: 1
+    path: Assets/Scenes/TempMenu.unity
+    guid: 146c53a60d3854b17b58eeb185f94643
+  - enabled: 0
     path: Assets/Scenes/Matchmaker.unity
     guid: 78c6c196d5a6f491196476dc1b2846a6
   - enabled: 1
