@@ -24,6 +24,7 @@ public class SimonSaysScript : MonoBehaviour
     private int correct;
     private int incorrect;
     private Color[] currentInput;
+    private TimerScript timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +58,10 @@ public class SimonSaysScript : MonoBehaviour
         incorrect = 0;
         GameManager.createSecretOrder(secretOrderLength, gameColors);
         secretOrder = GameManager.secretSimonSaysPattern;
+        timer = GameObject.Find("Timer").GetComponent<TimerScript>();
+        timer.timeUpEvent.AddListener(() =>{
+            enableButtons(false);
+        });
     }
 
     void enableButtons(bool canClick)
@@ -82,6 +87,7 @@ public class SimonSaysScript : MonoBehaviour
         if(correct >= correctImages.Length || incorrect >= incorrectImages.Length)
         {
             enableButtons(false);
+            timer.stop();
             yield break;
         }
         for (int i = 0; i < patternLength; i++)

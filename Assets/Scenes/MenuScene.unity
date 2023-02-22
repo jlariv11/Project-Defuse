@@ -637,7 +637,6 @@ RectTransform:
   - {fileID: 787229703}
   - {fileID: 113811615}
   - {fileID: 167142458}
-  - {fileID: 848843459}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1119,7 +1118,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ServerSetupScene
+          m_StringArgument: TempMenu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1877158996
