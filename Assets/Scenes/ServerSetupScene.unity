@@ -1858,7 +1858,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6332413867039107952, guid: 957a8ef9cfc574261bb5bf4742ee0f71, type: 3}
-      propertyPath: ConnectionData.Address
       value: 130.215.208.147
       objectReference: {fileID: 0}
     - target: {fileID: 6332413867039107953, guid: 957a8ef9cfc574261bb5bf4742ee0f71, type: 3}
