@@ -49,3 +49,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Directional Buttons
+    uniqueID: 3709820773
+    locked: 0
