@@ -28,7 +28,8 @@ public class LeverScript : MonoBehaviour
     {
         if (flicked)
         {
-            leverImg.color = Color.blue;
+            //leverImg.color = Color.blue;
+            leverImg.color = Color.white;
         }
         else
         {
